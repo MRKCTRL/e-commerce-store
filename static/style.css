@@ -1,0 +1,301 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+nav {
+  flex: 1;
+  text-align: right;
+}
+nav ul {
+  display: inline-block;
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: grey;
+}
+
+p {
+  color: grey;
+}
+.container {
+  max-width: 1300px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.row {
+  display: flex;
+  align-items:  center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.col-2 img{
+  max-width: 100%
+  padding: 50px 0;
+}
+
+col-2 h2 {
+  font-size: 50px;
+  line-height: 60px;
+  margin: 25px 0;
+}
+
+.btn {
+  display: inline-block;
+  background: white;
+  color: #fff;
+  padding: 8px 30px;
+  margin: 30px 0;
+  border-radius: 30px;
+  transition: background 0.5;
+}
+.header {
+  background: ;
+  /* todo go to color hunt  */
+}
+.body {
+  font-family: 'Ubuntu', sans-serif;
+}
+.header .row {
+  margin-top: 70px;
+}
+
+.btn:hover{
+  background: black;
+}
+
+.cat {
+  margin: 70px 0;
+}
+
+.col3 {
+  flex-basis: ;
+  min-width: 250px;
+  margin-bottom: 30px;
+}
+.col3 img {
+  width: 100%;
+}
+.smlcont {
+  max-width: 1080px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.col4 {
+  flex-basis: 25%;
+  padding: 10px;
+  min-width: 200px;
+  margin bottom: 50px;
+  transition: transform 0.05s;
+}
+.col4 img{
+  width: 100%;
+}
+.title {
+  text-align: center;
+  margin: 0 auto 80px;
+  position: relative;
+  line-height: 60px;
+  color: :;
+}
+.title::after {
+  content: '';
+  background: #ff523b;
+  width: 5px;
+  border-radius: absolute;
+  position: absolute;
+  bottom: 0r
+  left: 50%;
+  transform: translateX(-50%);
+}
+h4 {
+  color: blue;
+  font-weight: normal;
+
+}
+.col4 {
+  font-size: 14px;
+}
+.rate {
+  color: purple;
+}
+.col4:hover {
+  transform: translateY(-5px);
+}
+.special {
+  background: radial-gradient(#fff,$fffd6d6);
+  margin-top: 80px;
+  padding: 30px 0;
+}
+
+.col2 .special-img {
+  padding: 50px;
+}
+small {
+  color: blue;
+}
+
+/* test */
+.test {
+  padding-top: 100px;
+}
+.test col3 {
+  text-align: center;
+  padding: 40px 20px;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transform: 0.5s;
+}
+.test .col3 img{
+  width: 50px;
+  margin-top: 20px;
+  border-radius: 50%;
+}
+
+.test col3:hover{
+  transform: translateY(-10px);
+}
+.fa.fa-qoute-left {
+  font-size: 34px;
+  color: skyblue;
+}
+col3 p {
+  font-size: 12px;
+  margin: 12px 0;
+  color: powderblue;
+}
+.test .col3 h3 {
+  font-weight: 600;
+  color: ;
+  font-size: 16px;
+}
+
+/* bran */
+.bran {
+margin: 100px auto;
+
+}
+
+.col5 {
+  width:  160px;
+}
+
+.col5 img{
+  width: 100%;
+  cursor: pointer;
+  filter: grayscale(100%);
+}
+.col5 img:hover{
+  filter: grayscale(0);
+}
+
+/* footer */
+.footer {
+  background-color: black;
+  color: ;
+  font-size: 14px;
+  padding: 60px 0 20px;
+}
+
+.footer p{
+  color: black
+}
+
+.footer h3{
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.foot-col1, .foot-col2, .foot-col3, .foot-col4 {
+  min-width: 250px;
+  margin-bottom: 20px;
+}
+.foot-col1 {
+  flex-basis: 30%;
+}
+
+.foot-col2 {
+  flex: 1;
+  text-align: center;
+}
+.foot-col2 img {
+  width: 180px;
+  margin-bottom: 20px;
+}
+.foot-col3, ..footer-col4 {
+  flex-basis: 12%;
+  text-align: center;
+}
+ul {
+  list-style: none;
+}
+.appLogo {
+  margin: 20px;
+  width: 140px;
+}
+.footer hr {
+  border: none;
+  background: white;
+  height: 1px;
+  margin: 20px 0;
+}
+
+.CopyRight {
+  text-align: center;
+}
+.menu {
+  width: 28px;
+  margin-left: 20px;
+  display: none;
+}
+/*  */
+@media only screen and (max-width: 800px) {
+  nav ul{
+    position: absolute;
+    top: 70px;
+    left:0;
+    background: #333;
+    width:100%;
+    overflow: hidden;
+    transition: max-height 0.5s;
+  }
+  nav ul li {
+    display: block;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  nav ul li a {
+    color: white;
+  }
+  .menu {
+    display: block;
+    cursor: pointer;
+  }
+}
+/* media query for less than 600 */
+@media only screen and (max-width: 600px) {
+  .row {
+    text-align: center;
+  }
+  .col2, .col3, ol4{
+    flex-basis: 100%;
+  }
+}
