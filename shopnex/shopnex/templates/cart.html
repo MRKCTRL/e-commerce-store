@@ -21,8 +21,8 @@
 <br>
 <table class="table">
   <tr>
-    <td><h4>items: <strong>3</strong></h4></td>
-    <td><h4>Total: <strong>3</strong>R500</h4></td>
+    <td><h4>items: <strong>{{order.get_cart_items | floatformat:2}}</strong></h4></td>
+    <td><h4>Total: <strong>3</strong>{{order.get_cart_total | floatformat:2}}</h4></td>
     <th>
     <a style="float:right; margin:5px" class="btn btn-btn-success" href="{% url 'checlout' %}"></a></th>
   </tr>
@@ -34,6 +34,7 @@
         <br>
 
         <div class="box-element">
+          {}
           <div class="cart-row">
             <div style="flex:2" class="">
 
@@ -51,18 +52,19 @@
 
             </div>
             <div class="box-element">
+              {% for item in items  %}
               <div class="cart-row">
-                <div style="flex:2" class="row-image"><img src="{% static 'images/placeholder.png' %}" alt="">
+                <div style="flex:2" class="row-image"><img src="{{ item.product.imageURL }}" alt="">
 
                 </div>
-                <div style="flex:2" class="">product 1
+                <div style="flex:2" class="">{{ item.product.name }}
 
                 </div>
-                <div style="flex:1" class="">R680
+                <div style="flex:1" class="">{{item.product.price|floatformat:2}}
 
                 </div>
                 <div style="flex:1" class="">
-                  <p class="quantity">2</p>
+                  <p class="quantity">{{ item.quantity }}</p>
                   <div class="quantity">
                     <!-- get the icon for the arrow on flat con -->
                     <img class="cng-quantity" src="{% static 'images/arrow-up.png' %}" alt="">
@@ -72,9 +74,10 @@
                   </div>
 
                 </div>
-                <div style="flex:1" class="">R865
+                <div style="flex:1" class="">R{{items.get_total}}
 
                 </div>
+                {% endfor %}
           </div>
         </div>
       </div>

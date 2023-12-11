@@ -4,6 +4,8 @@ import os
 import sys
 
 
+user_path = os.path.join('#!/usr/bin/env python', os.sep, 'sourcedir')
+  
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "shopnex.settings")

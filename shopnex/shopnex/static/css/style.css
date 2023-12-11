@@ -319,3 +319,6 @@ ul {
   cursor:pointer;
   display: block;
 }
+.hidden{
+  display: none!important;
+}

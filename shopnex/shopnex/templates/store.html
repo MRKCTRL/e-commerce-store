@@ -15,7 +15,21 @@
     <title></title>
   </head>
   <body>
+<div class="row">
+  {% for product in products %}
+  <div class="vol-lg-4">
+    <img class="thumbnail" src="{% product.image.URL %}" alt="">
+    <div class="box-element">
+      <h5><strong>{{product.name}}</strong></h5>
+<hr>
+<button type="btn btn-outline-secondary add-btn" name="button">Add to Cart</button>
+<a class="btn btn-btn-outline-success" href="#">Preview</a>
+<h4 style="display: inline-block;float: right">ZAR {{product.price|floatformat:2}}</h4>
+    </div>
 
+  </div>
+{% endfor  %}
+</div>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
