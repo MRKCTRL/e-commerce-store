@@ -22,7 +22,7 @@
     <div class="box-element">
       <h5><strong>{{product.name}}</strong></h5>
 <hr>
-<button type="btn btn-outline-secondary add-btn" name="button">Add to Cart</button>
+<button class="btn btn-outline-secondary add-btn update-cart" data-product="{{product.id}}" data-action="add" name="button">Add to Cart</button>
 <a class="btn btn-btn-outline-success" href="#">Preview</a>
 <h4 style="display: inline-block;float: right">ZAR {{product.price|floatformat:2}}</h4>
     </div>

@@ -51,6 +51,7 @@
   <br>
   <div class="box-element" class="" id="pament-info">
     <small>Mastercard/Visa option</small>
+    <button id="make-payment">Make Payment</button>
 
   </div>
   <div class="col-lg-6">
@@ -70,7 +71,7 @@
 </div>
 {% endfor %}
 <h4>Items:{{order.get_cart_items}}</h4>
-<h4>total:{{order.get_cart_total|floatformat:2}}</h4>
+<h4>total:{{order.get_cart_total }}</h4>
     </div>
 
   </div>
@@ -78,6 +79,82 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+  var shipping = '{{order.shipping}}'
+  var total = '{{order.get_cart_total|floatformat:2}}'
+
+
+  if (shipping == 'False') {
+    document.getElementById('shipping-info').innerHTML = ''
+  }
+
+  if (user != 'AnonymousUser'){
+    document.getElementById('user-info').innerHTML = ''
+  }
+  if (shipping == 'False' && user != 'AnonymousUser'){
+    document.getElementById('form-wrapper').classList.add('hidden');
+    document.getElementById('payment-info').classList.remove('hidden');
+  }
+
+
+  var form = documentElementById('form')
+  form.addEvenListener('submit', function(e){
+  e.preventDefault()
+  console.log('form Submitted...')
+  document.getElementById('form-button').classList.add('hidden');
+  document.getElementsById('payment-info').classList.remove('hidden');
+
+})
+document.getElementById('make-payment').addEventListener('click', function(e){
+  submitFormData()
+})
+
+function submitFormData(){
+  console.log('Payment Button clicked')
+
+  var userFormData = {
+    'name': null,
+    'email':null,
+    'total':null,
+  }
+  var userFormData = {
+    'address': null,
+    'province':null,
+    'city':null,
+    'zipcode':null,
+  }
+
+  if (shipping != 'False'){
+    shippingInfo.address = form.address.value
+      shippingInfo.city = form.city.value
+        shippingInfo.province = form.province.value
+          shippingInfo.zipcode = form.zipcode.value
+  }
+  if (user == 'AnonymousUser'){
+    userFormData.name = form.name.value
+    userFormData.email = form.email.value
+  }
+  console.log('shipping Info:', shippingInfo)
+  console.log('User Info:',userFormInfo)
+}
+var url = '/process_order/'
+fetch (url, {
+  method: 'POST',
+  header: {
+      'Content-type':'application/json',
+      'X-CSRFToken':csrftoken,
+  } ,
+  body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo})
+})
+.then((response) => response.json())
+.then((data) => {
+  console.log('success:', data);
+  alert('transaction completed');
+  window.location.href = "% url 'store' %}"
+})
+
+</script>
 {% endblock content %}
   </body>
 </html>

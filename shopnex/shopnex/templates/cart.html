@@ -67,9 +67,9 @@
                   <p class="quantity">{{ item.quantity }}</p>
                   <div class="quantity">
                     <!-- get the icon for the arrow on flat con -->
-                    <img class="cng-quantity" src="{% static 'images/arrow-up.png' %}" alt="">
+                    <img class="chg-quantity update-cart" data-product={{item.product.id}}  data-action="add" src="{% static 'images/arrow-up.png' %}" alt="">
 
-                    <img class="cng-quantity" src="{% static 'images/arrow-down.png' %}" alt="">
+                    <img class="chg-quantity update-cart" data-action="remove" data-product={{item.product.id}} src="{% static 'images/arrow-down.png' %}" alt="">
 
                   </div>
 
