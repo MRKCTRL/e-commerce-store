@@ -3,51 +3,67 @@ from django.contrib import admin
 from .models import *
 from django.http import JsonResponse
 import datetime
+from django.views.decorators.csrf import csrf_exempt
+from .utils import cookieCart, cartData
 
 def store(request):
-    if requet.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
-    else:
-        items = []
-        order = {'get_cart_total':0, 'get_cart_items':0}
-        cartItems = order['get_cart_items']
+    data = cartData(request)
 
-    producs = Products.object.all()
+    cartItems = data['cartItems']
+    # order = data['order']
+    # items =  data['items']
+
+    # if requet.user.is_authenticated:
+    #     customer = request.user.customer
+    #     order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    #     items = order.orderitem_set.all()
+    #     cartItems = order.get_cart_items
+    # else:
+    #     cookieData = cookieCart(request)
+    #     items = cookieData[]
+        # order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
+        # cartItems = order['get_cart_items']
+
+    products = Products.object.all()
     context={'products':products, 'cartItems':cartItems}
     return render(request, 'store/store.html', context)
 
-def checkout(request):
-    if requet.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-        order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
-        cartItems = order['get_cart_items']
 
-    context={'items':items, 'order':order, 'cartItems':cartItems }
-    return render(request, 'store/checkout.html', context)
 
 def cart(request):
-    context={}
-        def checkout(request):
-            if requet.user.is_authenticated:
-                customer = request.user.customer
-                prder, created = Order.objects.get_or_create(customer=customer, complete=False)
-                items = order.orderitem_set.all()
-                cartItems = order['get_cart_items']
-            else:
-                order = {'get_cart_total':0, 'get_cart_items':0}
-                items = []
-                cartItems = order['get_cart_items']
+            # cookieData = cookieCart()
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
 
 
-            context = {'items':items, 'order':order, 'cartItems':cartItems }
+    context = {'items':items, 'order':order, 'cartItems':cartItems }
     return render(request, 'store/cart.html', context)
+
+
+def checkout(request):
+            # if requet.user.is_authenticated:
+            #     customer = request.user.customer
+            #     prder, created = Order.objects.get_or_create(customer=customer, complete=False)
+            #     items = order.orderitem_set.all()
+            #     cartItems = order['get_cart_items']
+            # else:
+                # cookieData = cookieCart()
+        data = cartData(request)
+
+        cartItems = data['cartItems']
+        order = data['order']
+        items = data['items']
+
+        context = {'items':items, 'order':order, 'cartItems':cartItems }
+        return render(request, 'store/checkout.html', context)
+
+
+
+
+
 
 def index(request):
     context={}
@@ -86,8 +102,13 @@ def proccessOder(request):
     if request.user.is_authenticated:
         customer = request.user.Customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        total = data['from']['total']
-        order.transaction_id = transaction_id
+
+        else:
+            customer, order = guestOrder(request, data)
+
+            total = data['form']['total']
+            order.transaction_id = transaction_id
+
 
         if total == order.get_cart_total:
             order.complete = True
@@ -102,4 +123,6 @@ def proccessOder(request):
             province=data['shipping']['province'],
             zipcode=data['shipping']['zipcode'],
             )
+
+
     return JsonResponse('payment complete', safe=False)
